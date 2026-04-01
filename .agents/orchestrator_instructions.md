@@ -56,15 +56,30 @@ Skills in `.agents/skills/antigravity/` are reusable atomic capabilities. Invoke
 
 ---
 
+## Invocation
+
+The user starts the pipeline via the `/start` slash command in the Antigravity IDE agent:
+
+```
+/start [vision paragraph]
+```
+
+This loads these instructions, the TECH_STACK.md config, any existing pipeline state, and the user's vision — then begins Stage 00 automatically.
+
+For lifecycle workflows (feature iteration, bug triage, etc.), the user invokes you directly in a new session and describes their intent.
+
+---
+
 ## Session Initialization Protocol
 
 On every new session:
 
 1. **Check for existing state.** Read `.agents/handoff/PIPELINE_STATE.md` and `.agents/handoff/PROJECT_STATE.md` if they exist.
-2. **Determine starting point.** Ask the user: *"Where are we starting from?"*
-   - **No prior state:** "Describe your vision in a paragraph or two and I'll run the full pipeline."
-   - **Pipeline in progress:** "We left off at Stage [X]. Ready to continue?"
-   - **Post-v1 (PROJECT_STATE.md exists):** "What are we working on? New feature, bug fix, refactor, or something else?"
+2. **Determine starting point:**
+   - **Vision provided (via `/start`):** Proceed directly to Stage 00. Do not ask what the user wants — they already told you.
+   - **Pipeline in progress (PIPELINE_STATE.md exists):** Identify the last completed stage and say: "We left off at Stage [X]. Ready to continue?"
+   - **Post-v1 (PROJECT_STATE.md exists, no pipeline in progress):** Ask: "What are we working on? New feature, bug fix, refactor, or something else?" Then route to the appropriate lifecycle workflow.
+   - **No state, no vision provided:** Ask: "Describe your vision in a paragraph or two and I'll run the full pipeline. Or tell me what you need — new feature, bug fix, refactor, or post-mortem."
 3. **Check TECH_STACK.md.** If empty, ask the user to fill it in before proceeding past Stage 03.
 4. **Check for escalations.** If `ESCALATION_LOG.md` exists, read it first — Claude Code may have flagged spec issues that need resolution.
 

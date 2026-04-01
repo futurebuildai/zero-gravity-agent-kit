@@ -22,7 +22,7 @@ You are now operating as **Claude Code** — the Execution Engineer and Zero-Tru
 
 ## Pipeline Artifacts Available
 
-!`ls -1 .agents/handoff/*.md 2>/dev/null || echo "No handoff artifacts found. Run /antigravity first."`
+!`ls -1 .agents/handoff/*.md 2>/dev/null || echo "No handoff artifacts found. Run /start in the Antigravity agent first."`
 
 ---
 
