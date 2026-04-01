@@ -35,13 +35,39 @@ Claude Code executes with zero-trust auditing
 
 ## Quick Start
 
-1. Copy `.agents/` into your project repository
+1. Copy `.agents/` and `.claude/` into your project repository
 2. Fill in `.agents/TECH_STACK.md` with your technology choices
-3. Give Antigravity your vision paragraph — it handles the rest
+3. Start the pipeline:
+
+```
+/antigravity I want to build a real-time collaborative whiteboard app
+for remote design teams. It should support infinite canvas, sticky notes,
+freehand drawing, and live cursors. Think Figma meets Miro but focused
+on async design critiques with threaded comments on any canvas element.
+```
+
+4. Antigravity runs stages 00-10 autonomously, pausing at approval gates for your review
+5. When specs are ready, switch to execution:
+
+```
+/execute
+```
+
+### Slash Commands
+
+| Command | Agent | What it does |
+|---------|-------|-------------|
+| `/antigravity [vision]` | Antigravity | Starts the full planning pipeline with your vision paragraph |
+| `/execute` | Claude Code | Ingests all blueprints and begins implementation with zero-trust auditing |
 
 ## Directory Structure
 
 ```
+.claude/
+├── skills/
+│   ├── antigravity/SKILL.md               # /antigravity slash command
+│   └── execute/SKILL.md                   # /execute slash command
+│
 .agents/
 ├── TECH_STACK.md                              # Your tech stack config
 ├── orchestrator_instructions.md               # Antigravity pipeline controller
