@@ -1,6 +1,6 @@
 ---
-name: antigravity
-description: Start the Antigravity product pipeline. Takes a vision paragraph and autonomously runs discovery, research, design, and specification stages to produce production-ready blueprints.
+name: start
+description: Start the 11-stage product pipeline. Takes a vision paragraph and autonomously runs discovery, research, design, and specification stages to produce production-ready blueprints.
 argument-hint: [paste your vision paragraph here]
 allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash
 ---

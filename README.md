@@ -37,17 +37,17 @@ Claude Code executes with zero-trust auditing
 
 1. Copy `.agents/` and `.claude/` into your project repository
 2. Fill in `.agents/TECH_STACK.md` with your technology choices
-3. Start the pipeline:
+3. Open a session in the **Antigravity** IDE agent and start the pipeline:
 
 ```
-/antigravity I want to build a real-time collaborative whiteboard app
+/start I want to build a real-time collaborative whiteboard app
 for remote design teams. It should support infinite canvas, sticky notes,
 freehand drawing, and live cursors. Think Figma meets Miro but focused
 on async design critiques with threaded comments on any canvas element.
 ```
 
 4. Antigravity runs stages 00-10 autonomously, pausing at approval gates for your review
-5. When specs are ready, switch to execution:
+5. When specs are ready, switch to a **Claude Code** session for execution:
 
 ```
 /execute
@@ -55,9 +55,9 @@ on async design critiques with threaded comments on any canvas element.
 
 ### Slash Commands
 
-| Command | Agent | What it does |
-|---------|-------|-------------|
-| `/antigravity [vision]` | Antigravity | Starts the full planning pipeline with your vision paragraph |
+| Command | Used In | What it does |
+|---------|---------|-------------|
+| `/start [vision]` | Antigravity | Kicks off the 11-stage planning pipeline with your vision paragraph |
 | `/execute` | Claude Code | Ingests all blueprints and begins implementation with zero-trust auditing |
 
 ## Directory Structure
@@ -65,8 +65,8 @@ on async design critiques with threaded comments on any canvas element.
 ```
 .claude/
 ├── skills/
-│   ├── antigravity/SKILL.md               # /antigravity slash command
-│   └── execute/SKILL.md                   # /execute slash command
+│   ├── start/SKILL.md                     # /start slash command (used in Antigravity agent)
+│   └── execute/SKILL.md                   # /execute slash command (used in Claude Code agent)
 │
 .agents/
 ├── TECH_STACK.md                              # Your tech stack config
